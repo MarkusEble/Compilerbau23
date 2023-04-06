@@ -16,12 +16,12 @@ public class WhitespaceMachine extends compiler.StateMachine {
 
     public void initStateTable() {
         State startState = new State("start", false);
-        startState.addTransitionRange(WHITESPACE_CHARACTERS[0], WHITESPACE_CHARACTERS[WHITESPACE_CHARACTERS.length-1], "whiteSpace");
+        for(char c : WHITESPACE_CHARACTERS) startState.addTransition(c, "whiteSpace");
         startState.addTransitionRange('!', '~', "error"); // all ASCII characters from 33 to 126
         addState(startState);
 
         State whiteSpaceState = new State("whiteSpace", true);
-        whiteSpaceState.addTransitionRange(WHITESPACE_CHARACTERS[0], WHITESPACE_CHARACTERS[WHITESPACE_CHARACTERS.length-1], "whiteSpace");
+        for(char c : WHITESPACE_CHARACTERS) whiteSpaceState.addTransition(c, "whiteSpace");
         whiteSpaceState.addTransitionRange('!', '~', "error"); // all ASCII characters from 33 to 126
         addState(whiteSpaceState);
 
