@@ -16,10 +16,21 @@ public abstract class StateMachine implements Cloneable {
     private String state; // current state
     protected boolean traceFinished = false;
 
+    /**
+     * initialize state transition table
+     * this method has to be overwritten by the implementer of a final state machine
+     */
     public abstract void initStateTable();
 
+    /**
+     * get start state
+     * this method has to be overwritten by the implementer of a final state machine
+     */
     public abstract String getStartState();
 
+    /**
+     * adds a state to the final state machine
+     */
     public State addState(State state) {
         this.stateMap.put(state.getName(), state);
         return state;
@@ -31,12 +42,20 @@ public abstract class StateMachine implements Cloneable {
         }
     }
 
+    /**
+     * initialize processing of input
+     */
     public void init(String input) {
         this.initStateTable();
         this.input = new InputReader(input);
         this.state = this.getStartState();
     }
 
+    /**
+     * process next input character
+     * implements the state transition function f of the machine model
+     * may consume input
+     */
     public void step() {
         // look for transition on (current state, current input)
         final char curChar = this.input.currentChar();
@@ -45,13 +64,13 @@ public abstract class StateMachine implements Cloneable {
         final State curState = this.stateMap.get(this.state);
         final String nextStateString = curState.getTransition(curChar);
 
-		// no transition => error
+        // no transition => error
         if (nextStateString == null) {
             this.state = "error";
             return;
         }
 
-		// execute transition
+        // execute transition
         final State nextState = this.stateMap.get(nextStateString);
         if (nextState == null) {
             throw new NullPointerException("expected state '" + nextStateString + "' not registered " +
@@ -60,6 +79,9 @@ public abstract class StateMachine implements Cloneable {
         this.state = nextState.getName();
     }
 
+    /**
+     * process input until finished and dump results to outStream
+     */
     public void process(String input, OutputStreamWriter outStream) throws Exception {
         this.init(input);
         this.traceHead(outStream);
@@ -74,7 +96,7 @@ public abstract class StateMachine implements Cloneable {
             this.step();
         }
 
-		// dump final state
+        // dump final state
         this.trace(outStream);
         outStream.write('\n');
         if (this.isFinalState()) {
@@ -85,11 +107,17 @@ public abstract class StateMachine implements Cloneable {
         outStream.flush();
     }
 
+    /**
+     * is machine in final state?
+     */
     public boolean isFinalState() {
         final State state = this.stateMap.get(this.state);
         return (state != null) && state.isFinal();
     }
 
+    /**
+     * is processing finished?
+     */
     public boolean isFinished() {
         return this.input.currentChar() == 0 || this.state.equals("error");
     }
@@ -167,10 +195,10 @@ public abstract class StateMachine implements Cloneable {
     }
 
     private Set<String> getFinalStates() {
-		return this.stateMap.entrySet().stream()
-				.filter(stringStateEntry -> stringStateEntry.getValue().isFinal())
-				.map(Map.Entry::getKey)
-				.collect(Collectors.toSet());
+        return this.stateMap.entrySet().stream()
+                .filter(stringStateEntry -> stringStateEntry.getValue().isFinal())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 
     /**
