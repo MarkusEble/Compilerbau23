@@ -6,61 +6,61 @@ import java.util.Map;
 /**
  * single state of a deterministic finite state machine with transitions
  */
-public class State implements StateIntf {
-	private String m_name;
-	private boolean m_isFinal;
-	// part of transition function
-	private HashMap<String, String> m_transitionMap;
+public class State {
+
+	private final String name;
+	private final boolean isFinal;
+
+	private final HashMap<String, String> transitionMap = new HashMap<>();
 
 	public State(String name, boolean isFinal) {
-		m_name = name;
-		m_isFinal = isFinal;
-		m_transitionMap = new HashMap<String, String>();
+		this.name = name;
+		this.isFinal = isFinal;
 	}
 
-    @Override
 	public void addTransition(char terminal, String targetState) {
-		m_transitionMap.put(String.valueOf(terminal), targetState);
+		this.transitionMap.put(String.valueOf(terminal), targetState);
 	}
 
-    @Override
-	public void addTransitionRange(char first, char last, String targetState) {
-		for (char c = first; c <= last; c++) {
-			addTransition(c, targetState);
+	public void addTransitions(final String targetState, final char ... terminals) {
+		for (final char terminal : terminals) {
+			this.addTransition(terminal, targetState);
 		}
 	}
 
-    @Override
+	public void addTransitionRange(char first, char last, String targetState) {
+		for (char c = first; c <= last; c++) {
+			this.addTransition(c, targetState);
+		}
+	}
+
 	public String getTransition(char terminal) {
-		return m_transitionMap.get(String.valueOf(terminal));
+		return this.transitionMap.get(String.valueOf(terminal));
 	}
 
-    @Override
 	public String getName() {
-		return m_name;
+		return this.name;
 	}
 
-    @Override
 	public boolean isFinal() {
-		return m_isFinal;
+		return this.isFinal;
 	}
 
 	/**
-	 * tranform description of this state into dot format
+	 * transform description of this state into dot format
 	 */
 	public String transitionsAsDot(boolean collapse) {
 		if (collapse) {
-			return transitionsAsDot(getName(), Utils.collapse(m_transitionMap));
+			return transitionsAsDot(getName(), Utils.collapse(transitionMap));
 		} else {
-			return transitionsAsDot(getName(), m_transitionMap);
+			return transitionsAsDot(getName(), this.transitionMap);
 		}
 	}
 
 	private static String transitionsAsDot(String origin, Map<String, String> transitions) {
-		StringBuilder builder = new StringBuilder();
+		final StringBuilder builder = new StringBuilder();
 		for (Map.Entry<String, String> entry : transitions.entrySet()) {
-			builder.append(
-					String.format("  %s -> %s [ label = \"%s\" ];\n", origin, entry.getValue(), entry.getKey()));
+			builder.append(String.format("  %s -> %s [ label = \"%s\" ];\n", origin, entry.getValue(), entry.getKey()));
 		}
 		return builder.toString();
 	}
