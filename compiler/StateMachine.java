@@ -20,8 +20,9 @@ public abstract class StateMachine implements Cloneable {
 
     public abstract String getStartState();
 
-    public void addState(State state) {
+    public State addState(State state) {
         this.stateMap.put(state.getName(), state);
+        return state;
     }
 
     public void addStates(State... states) {
