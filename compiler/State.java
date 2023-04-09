@@ -13,25 +13,32 @@ public class State {
 
 	private final HashMap<String, String> transitionMap = new HashMap<>();
 
+	public State(String name) {
+		this(name, false);
+	}
+
 	public State(String name, boolean isFinal) {
 		this.name = name;
 		this.isFinal = isFinal;
 	}
 
-	public void addTransition(char terminal, String targetState) {
+	public State addTransition(char terminal, String targetState) {
 		this.transitionMap.put(String.valueOf(terminal), targetState);
+		return this;
 	}
 
-	public void addTransitions(final String targetState, final char ... terminals) {
+	public State addTransitions(final String targetState, final char ... terminals) {
 		for (final char terminal : terminals) {
 			this.addTransition(terminal, targetState);
 		}
+		return this;
 	}
 
-	public void addTransitionRange(char first, char last, String targetState) {
+	public State addTransitionRange(char first, char last, String targetState) {
 		for (char c = first; c <= last; c++) {
 			this.addTransition(c, targetState);
 		}
+		return this;
 	}
 
 	public String getTransition(char terminal) {
