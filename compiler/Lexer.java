@@ -97,7 +97,7 @@ public class Lexer implements LexerIntf {
     }
 
     public void addKeywordMachine(String keyword, TokenIntf.Type tokenType) {
-        m_machineList.add(new MachineInfo(new KeywordMachine(keyword)));
+        m_machineList.add(new MachineInfo(new KeywordMachine(keyword, tokenType)));
     }
 
     public void initMachines(String input) {
@@ -118,28 +118,31 @@ public class Lexer implements LexerIntf {
         // initialize machines
         initMachines(m_input.getRemaining());
 
-        // TODO begin
-        // while some machine are in process
-           // increase counter
-           // for all remaining machines
-               // read next character
-               // check if machine is still in process
-               // if machine would accept
-                   // update last accept position
-        // end while some machines are in process
+        // read input until all machines stopped
+        int counter = 0;
+        while(true) {
+            boolean isAnyMachineRunning = false;
+            counter++;
+            for(MachineInfo machineInfo : m_machineList) {
+                isAnyMachineRunning |= !machineInfo.m_machine.isFinished();
+                if(!machineInfo.m_machine.isFinished()) machineInfo.m_machine.step();
+                if(machineInfo.m_machine.isFinalState()) machineInfo.m_acceptPos = counter;
+            }
+            if(!isAnyMachineRunning) break;
+        }
 
         // select match
-        // for all machines
-            // look for maximum accept position
-            
-        // throw in case of error (best match has length 0)
+        int largestAcceptedPosition = 0;
+        MachineInfo winnerMachine = null;
+        for(MachineInfo machineInfo : m_machineList)
+            if(machineInfo.m_acceptPos > largestAcceptedPosition)
+                winnerMachine = machineInfo;
 
-        // set next word [start pos, final pos)
+        // create token
         Token token = new Token();
-        // consume token from input
-        // fill in token info
+        token.m_type = winnerMachine.m_machine.getType();
+        token.m_value = m_input.advanceAndGet(winnerMachine.m_acceptPos);
 
-        // TODO end
         return token;
     }
 
