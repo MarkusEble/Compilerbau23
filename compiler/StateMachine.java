@@ -14,21 +14,17 @@ public abstract class StateMachine implements StateMachineIntf, Cloneable {
 	private HashMap<String, State> m_stateMap; 	// set of states
 	protected boolean m_traceFinished = false;
 
-	public StateMachine() {
-		m_input = new InputReader("");
-		m_stateMap = new HashMap<String, State>();
-		initStateTable();
-		m_state = getStartState();
-	}
-
 	@Override
-	public void addState(State state) {
+	public StateIntf addState(State state) {
 		m_stateMap.put(state.getName(), state);
+		return state;
 	}
 
 	@Override
 	public void init(String input) {
 		m_input = new InputReader(input);
+		m_stateMap = new HashMap<String, State>();
+		initStateTable();
 		m_state = getStartState();
 	}
 
@@ -44,7 +40,11 @@ public abstract class StateMachine implements StateMachineIntf, Cloneable {
         } else {
         	// execute transition
         	State nextState = m_stateMap.get(nextStateString);
-        	m_state = nextState.getName();
+			if (nextState == null) {
+				throw new NullPointerException("expected state '" + nextStateString + "' not registered " +
+						"(forgot calling StateMachine#addState?)");
+			}
+			m_state = nextState.getName();
         }
         m_input.advance();
 	}

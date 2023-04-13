@@ -83,10 +83,10 @@ public class InputReader implements InputReaderIntf, Cloneable {
 		return theClone;
 	}
 
-    public static String fileToString(String fileName) throws Exception {
-	   Path filePath = Path.of(fileName);
-	   String content = Files.readString(filePath);
-	   return content;
+	public static String fileToString(String fileName) throws Exception {
+		Path filePath = Path.of(fileName);
+		String content = Files.readString(filePath);
+		return content;
 	}
 }
 

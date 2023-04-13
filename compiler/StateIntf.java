@@ -12,13 +12,13 @@ public interface StateIntf {
 	/**
 	 * add transition triggerd by <terminal> form this state to <targetState>
 	 */
-	public void addTransition(char terminal, String targetState);
+	public StateIntf addTransition(char terminal, String targetState);
 
 	/**
 	 * add transition triggerd by all terminals in range [first, last] from this
 	 * state to <targetState>
 	 */
-	public void addTransitionRange(char first, char last, String targetState);
+	public StateIntf addTransitionRange(char first, char last, String targetState);
 
 	// methods to use during input processing
 

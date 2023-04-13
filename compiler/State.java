@@ -19,15 +19,17 @@ public class State implements StateIntf {
 	}
 
     @Override
-	public void addTransition(char terminal, String targetState) {
+	public StateIntf addTransition(char terminal, String targetState) {
 		m_transitionMap.put(String.valueOf(terminal), targetState);
+		return this;
 	}
 
     @Override
-	public void addTransitionRange(char first, char last, String targetState) {
+	public StateIntf addTransitionRange(char first, char last, String targetState) {
 		for (char c = first; c <= last; c++) {
 			addTransition(c, targetState);
 		}
+		return this;
 	}
 
     @Override

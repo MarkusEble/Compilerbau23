@@ -5,5 +5,6 @@ public class TestABMachine {
     compiler.StateMachine abMachine = new compiler.machines.ABMachine();
     java.io.OutputStreamWriter outWriter = new java.io.OutputStreamWriter(System.out);
     abMachine.process("AABBBB", outWriter);
+    System.out.print(abMachine.asDot());
   }
 }

@@ -18,7 +18,7 @@ public interface StateMachineIntf {
 	/**
 	 * adds a state to the final state machine
 	 */
-	public void addState(State state);
+	public StateIntf addState(State state);
 
 	// methods for input processing
 
