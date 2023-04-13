@@ -2,7 +2,7 @@ package compiler.machines;
 
 import compiler.StateMachine;
 
-public class Identifier extends StateMachine{
+public class IdentifierMachine extends StateMachine{
 
     @Override
     public void initStateTable() {

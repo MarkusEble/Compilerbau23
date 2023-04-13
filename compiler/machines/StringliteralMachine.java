@@ -1,4 +1,4 @@
-p ackage compiler.machines;
+package compiler.machines;
 
 public class StringliteralMachine extends compiler.StateMachine {
   @Override
