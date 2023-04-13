@@ -59,5 +59,9 @@ public class DecimalMachine extends compiler.StateMachine {
     public String getStartState() {
         return "startState";
     }
+
+    public compiler.TokenIntf.Type getType() {
+        return compiler.TokenIntf.Type.DECIMAL;
+    }
     
 }

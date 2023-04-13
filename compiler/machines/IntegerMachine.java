@@ -32,4 +32,7 @@ public class IntegerMachine extends StateMachine {
         return "start";
     }
 
+    public compiler.TokenIntf.Type getType() {
+        return compiler.TokenIntf.Type.INTEGER;
+    }
 }

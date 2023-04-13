@@ -34,5 +34,8 @@ public class WhitespaceMachine extends compiler.StateMachine {
     public String getStartState() {
         return "start";
     }
-   
+
+    public compiler.TokenIntf.Type getType() {
+        return compiler.TokenIntf.Type.WHITESPACE;
+    }
 }

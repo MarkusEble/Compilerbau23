@@ -120,14 +120,24 @@ public class Lexer implements LexerIntf {
 
         // TODO begin
         // while some machine are in process
-
+           // increase counter
+           // for all remaining machines
+               // read next character
+               // check if machine is still in process
+               // if machine would accept
+                   // update last accept position
         // end while some machines are in process
 
         // select match
-        // throw in case of error
+        // for all machines
+            // look for maximum accept position
+            
+        // throw in case of error (best match has length 0)
 
         // set next word [start pos, final pos)
         Token token = new Token();
+        // consume token from input
+        // fill in token info
 
         // TODO end
         return token;

@@ -6,9 +6,12 @@ import compiler.StateMachine;
 public class KeywordMachine extends StateMachine{
 
     private final String keyword;
+    private compiler.TokenIntf.Type m_type;
 
-    public KeywordMachine(String keyword) {
+
+    public KeywordMachine(String keyword, compiler.TokenIntf.Type type) {
         this.keyword = keyword;
+        this.m_type = type;
     }
 
     @Override
@@ -32,4 +35,7 @@ public class KeywordMachine extends StateMachine{
         return "start";
     }
 
+    public compiler.TokenIntf.Type getType() {
+        return m_type;
+    }
 }

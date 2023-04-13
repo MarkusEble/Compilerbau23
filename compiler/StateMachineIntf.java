@@ -56,4 +56,9 @@ public interface StateMachineIntf {
 	 * is machine in final state?
 	 */
 	public boolean isFinalState();
+
+	/**
+	 * token type recognized by this machine
+	 */
+	public TokenIntf.Type getType();
 }
