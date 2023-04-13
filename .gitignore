@@ -1,4 +1,4 @@
 .idea/
 *.iml
 .vscode/
-.out/
+out
