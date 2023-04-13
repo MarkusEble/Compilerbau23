@@ -16,6 +16,10 @@ public class ABMachine extends compiler.StateMachine {
     public String getStartState() {
         return "start";
     }
+
+    public compiler.TokenIntf.Type getType() {
+        return compiler.TokenIntf.Type.EOF;
+    }
    
 }
 

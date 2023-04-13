@@ -1,4 +1,4 @@
-package compiler.machines;
+p ackage compiler.machines;
 
 public class StringliteralMachine extends compiler.StateMachine {
   @Override
@@ -26,5 +26,9 @@ public class StringliteralMachine extends compiler.StateMachine {
   @Override
   public String getStartState() {
     return "start";
+  }
+
+  public compiler.TokenIntf.Type getType() {
+    return compiler.TokenIntf.Type.STRING;
   }
 }
