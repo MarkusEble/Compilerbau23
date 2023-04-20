@@ -18,13 +18,15 @@ public class ParantheseParserMain {
 
     public static void parseS(compiler.Lexer lexer) throws Exception {
         compiler.Token currentToken = lexer.lookAhead();
-        /* if () {
+        if (currentToken.m_type == TokenIntf.Type.LPAREN) {
             // S : (S)
-        } else if () {
+            lexer.expect(TokenIntf.Type.LPAREN);
+            parseS(lexer);
+            lexer.expect(TokenIntf.Type.RPAREN);
+        } else if (currentToken.m_type == TokenIntf.Type.RPAREN || currentToken.m_type == TokenIntf.Type.EOF) {
             // S : epsilon
         } else {
             lexer.throwCompilerException("invalid paranthese expression", "");
-        } */
+        }
     }
-
 }
