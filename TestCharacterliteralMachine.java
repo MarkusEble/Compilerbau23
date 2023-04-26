@@ -1,5 +1,3 @@
-import java.io.OutputStream;
-
 public class TestCharacterliteralMachine {
 
     public void test( String input ) throws Exception {
