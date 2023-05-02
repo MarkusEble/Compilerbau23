@@ -5,7 +5,7 @@ public class LexerTestMain {
     public static void main(String[] args) throws Exception {
         // open input file
         String testSuiteContent = compiler.InputReader.fileToString("LexerTestInput.txt");
-        compiler.InputReader inputReader = new compiler.InputReader(testSuiteContent);
+        /*compiler.InputReader inputReader = new compiler.InputReader(testSuiteContent);
 
         // parse test content
         java.util.Vector<test.TestCaseContent> testCaseContentArr = parseTestSuite(inputReader);
@@ -15,11 +15,11 @@ public class LexerTestMain {
         for (test.TestCaseContent testCaseContent : testCaseContentArr) {
             testCaseContent.toStream(outStream);
         }
-        outStream.flush();
+        outStream.flush();*/
 
-        /*compiler.InputReader inputReader = new compiler.InputReader(testSuiteContent);
+        compiler.InputReader inputReader = new compiler.InputReader(testSuiteContent);
         test.TestSuite testSuite = new test.TestSuite();
-        testSuite.execute(inputReader, new LexerTest());*/
+        testSuite.execute(inputReader, new LexerTest());
     }
 
     public static java.util.Vector<test.TestCaseContent> parseTestSuite(compiler.InputReader inputReader) throws Exception {

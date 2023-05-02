@@ -9,6 +9,7 @@ import compiler.machines.IntegerMachine;
 import compiler.machines.KeywordMachine;
 import compiler.machines.ZeilenkommentarMachine;
 import compiler.machines.WhitespaceMachine;
+import compiler.machines.StringliteralMachine;
 
 public class Lexer implements LexerIntf, LexerParserIntf {
 
@@ -40,7 +41,7 @@ public class Lexer implements LexerIntf, LexerParserIntf {
     private void addLexerMachines() {
         addMachine(new IntegerMachine());
         addMachine(new DecimalMachine());
-        //addMachine(new StringLiteralMachine());
+        addMachine(new StringliteralMachine());
         addMachine(new CharacterliteralMachine());
         addKeywordMachine("*", compiler.TokenIntf.Type.MUL);
         addKeywordMachine("/", compiler.TokenIntf.Type.DIV);
