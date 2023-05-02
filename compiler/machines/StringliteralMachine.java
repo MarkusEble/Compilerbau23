@@ -8,17 +8,10 @@ public class StringliteralMachine extends compiler.StateMachine {
     addState(startState);
 
     compiler.State afterState = new compiler.State("in_string",false);
-    String asciiString = "";
-    for (int i = 0; i <= 127; i++) {
-        asciiString += (char)i;
-    }
-    for(int i = 0; i < asciiString.length(); i++){
-        char c = asciiString.charAt(i);
-        afterState.addTransition(c, "in_string");
-    }
+    afterState.addTransitionRange('!', '~', "in_string");
+    afterState.addTransition('"', "end");
     addState(afterState);
 
-    afterState.addTransition('"', "end");
     compiler.State endState = new compiler.State("end", true);
     addState(endState);
   }

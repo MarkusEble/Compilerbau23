@@ -81,6 +81,9 @@ public class MultiLineInputReader {
     }
 
     String getMarkedCodeSnippet(int startLine, int startCol, int endLine, int endCol) {
+        if (startLine == m_lines.length) {
+            return new String("<end of file>");
+        }
         String codeSnippet = new String();
         // for each line
         for (int curLine = startLine; curLine <= endLine; curLine++) {

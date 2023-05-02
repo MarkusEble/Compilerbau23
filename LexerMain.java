@@ -7,6 +7,7 @@ public class LexerMain {
         OutputStreamWriter outStream = new OutputStreamWriter(System.out, "UTF-8");
 
         lexer.processInput("12 45 3.4", outStream);
+        lexer.processInput("1AB-2", outStream);
     }
 
 }
