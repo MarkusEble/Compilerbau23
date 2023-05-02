@@ -87,8 +87,6 @@ public class Lexer implements LexerIntf, LexerParserIntf {
         addKeywordMachine("RETURN", compiler.TokenIntf.Type.RETURN);
         addKeywordMachine("BLOCK", compiler.TokenIntf.Type.BLOCK);
         addKeywordMachine("DEFAULT", compiler.TokenIntf.Type.DEFAULT);
-        addKeywordMachine("$IN", compiler.TokenIntf.Type.INPUT);
-        addKeywordMachine("$OUT", TokenIntf.Type.OUTPUT);
 
         addMachine(new compiler.machines.IdentifierMachine());
     }
