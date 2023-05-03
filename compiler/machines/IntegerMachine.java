@@ -10,8 +10,8 @@ public class IntegerMachine extends StateMachine {
         final State startState = new State("start", false);
         startState.addTransitionRange('1', '9', "end");
         startState.addTransition('0', "zero_end");
-        startState.addTransition('+', "sign");
-        startState.addTransition('-', "sign");
+        //startState.addTransition('+', "sign");
+        //startState.addTransition('-', "sign");
         this.addState(startState);
 
         final State signState = new State("sign", false);
