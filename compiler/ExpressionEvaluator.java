@@ -97,14 +97,62 @@ public class ExpressionEvaluator {
     }
 
     int getCompareExpr() throws Exception {
-        return getShiftExpr();
+        // compare = shift (< > == shift)*
+        int result = getShiftExpr();
+        while (m_lexer.lookAhead().m_type == TokenIntf.Type.EQUAL ||
+                m_lexer.lookAhead().m_type == TokenIntf.Type.LESS ||
+                m_lexer.lookAhead().m_type == TokenIntf.Type.GREATER) {
+
+            if (m_lexer.lookAhead().m_type == TokenIntf.Type.EQUAL) {
+                m_lexer.advance();
+                result = (result == getShiftExpr()) ? 1 : 0;
+            }
+
+            if (m_lexer.lookAhead().m_type == TokenIntf.Type.LESS) {
+                m_lexer.advance();
+                result = (result < getShiftExpr()) ? 1 : 0;
+            }
+
+            if (m_lexer.lookAhead().m_type == TokenIntf.Type.GREATER) {
+                m_lexer.advance();
+                result = (result > getShiftExpr()) ? 1 : 0;
+            }
+        }
+        return result;
     }
 
     int getAndOrExpr() throws Exception {
-        return getCompareExpr();
+        // and|or = compare (||&& compare)*
+        int result = getCompareExpr();
+        while(m_lexer.lookAhead().m_type == TokenIntf.Type.AND || m_lexer.lookAhead().m_type == TokenIntf.Type.OR) {
+            if(m_lexer.lookAhead().m_type == TokenIntf.Type.AND) {
+                m_lexer.advance();
+                result = (result > 0 && getCompareExpr() > 0) ? 1 : 0;
+            } else {
+                m_lexer.advance();
+                result = (result > 0 || getCompareExpr() > 0) ? 1 : 0;
+            }
+        }
+        return result;
     }
 
+    /**
+     * Evaluates a question mark expression.
+     * questionMarkExpr -> andOrExpr ? andOrExpr : andOrExpr
+     *
+     * @return value1 if andOrResult equals 1 (true), else value2
+     */
     int getQuestionMarkExpr() throws Exception {
-        return getAndOrExpr();
+        int andOrResult = getAndOrExpr();
+        if (m_lexer.lookAhead().m_type == TokenIntf.Type.QUESTIONMARK) {
+          m_lexer.expect(TokenIntf.Type.QUESTIONMARK);
+          int value1 = getAndOrExpr();
+          m_lexer.expect(TokenIntf.Type.DOUBLECOLON);
+          int value2 = getAndOrExpr();
+          return andOrResult == 1 ? value1: value2;
+        } else {
+            return andOrResult;
+        }
+
     }
 }
