@@ -9,3 +9,7 @@ shiftOp: SHIFTLEFT | SHIFTRIGHT;
 SHIFTLEFT: '<<';
 SHIFTRRIGHT: '>>';
 WS: [ \t\r\n]+ -> skip;
+
+parantheseExpr: (LPAREN sumquestionMarkExpr RPAREN) | NUMBER;
+LPAREN: '(';
+RPAREN: ')';
