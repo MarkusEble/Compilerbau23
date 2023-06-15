@@ -34,7 +34,7 @@ public class ASTExecuteNTimes extends ASTStmtNode {
     @Override
     public InstrIntf codegen(CompileEnvIntf env) {
         // Create helper variable name
-        Symbol counterSymbol = env.createUniqueSymbol("counter", 0);
+        Symbol counterSymbol = env.createUniqueSymbol("counter");
 
         // Define Blocks
         InstrBlock initBlock = env.createBlock("init");

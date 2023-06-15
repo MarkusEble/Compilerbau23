@@ -221,6 +221,8 @@ public class Parser {
             //    stmt: blockStmt // SELECT = {LBRACE}
         } else if (m_lexer.lookAhead().m_type == TokenIntf.Type.LBRACE) {
             return getBlockStmt();
+        } else if (m_lexer.lookAhead().m_type == TokenIntf.Type.FOR) {
+            return getFor();
         //   stmt: returnStmt // SELECT = {RETURN}
         } else if(m_lexer.lookAhead().m_type == Type.RETURN) {
             return getReturnStmt();
@@ -281,6 +283,22 @@ public class Parser {
       ASTStmtNode stmtListNode = getStmtList();
       m_lexer.expect(TokenIntf.Type.RBRACE);
       return new ASTBlockStmtNode(stmtListNode);
+    }
+
+    ASTStmtNode getFor() throws Exception {
+        // for_stmt: FOR LPAREN stmt SEMICOLON expr SEMICOLON stmt RPAREN LBRACE stmtList RBRACE
+        m_lexer.expect(Type.FOR);
+        m_lexer.expect(Type.LPAREN);
+        ASTStmtNode iteratorStmt = getStmt();
+        m_lexer.expect(Type.SEMICOLON);
+        ASTExprNode conditionExpr = getQuestionMarkExpr();
+        m_lexer.expect(Type.SEMICOLON);
+        ASTStmtNode iteratorOperationStmt = getStmt();
+        m_lexer.expect(Type.RPAREN);
+        m_lexer.expect(Type.LBRACE);
+        ASTStmtNode body = getStmtList();
+        m_lexer.expect(Type.RBRACE);
+        return new ASTForStmtNode(iteratorStmt, conditionExpr, iteratorOperationStmt, body);
     }
 
     ASTStmtNode getFunctionCallStmt() throws Exception {

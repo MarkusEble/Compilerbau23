@@ -24,7 +24,7 @@ public class InstrPrint extends compiler.InstrIntf {
 
     @Override
     public void trace(OutputStreamWriter os) throws Exception {
-        os.write("PRINT\n");
+        os.write(String.format("PRINT %%%d\n", m_expr.m_id));
     }
     
 }

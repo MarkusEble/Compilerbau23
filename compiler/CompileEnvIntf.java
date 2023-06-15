@@ -38,6 +38,6 @@ public interface CompileEnvIntf {
 
 	InstrBlock popLoopStack();
 
-	Symbol createUniqueSymbol(String prefix, int number);
+	Symbol createUniqueSymbol(String prefix);
 
 }

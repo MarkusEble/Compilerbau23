@@ -39,7 +39,7 @@ public class CompileEnv implements CompileEnvIntf {
     }
 
     @Override
-    public Symbol createUniqueSymbol(String prefix, int number) {
+    public Symbol createUniqueSymbol(String prefix) {
         return m_symbolTable.createSymbol("$" + prefix + "_" + uniqueSymbolCounter++);
     }
 

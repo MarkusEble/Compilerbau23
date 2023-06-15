@@ -26,7 +26,7 @@ public class InstrPlusMinus extends compiler.InstrIntf {
 
     @Override
     public void trace(OutputStreamWriter os) throws Exception {
-        os.write(m_type.toString() + '\n');        
+        os.write(String.format("%%%d = %s %%%d, %%%d\n", m_id, m_type.toString(), m_lhs.m_id, m_rhs.m_id));        
     }
     
 }

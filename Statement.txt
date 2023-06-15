@@ -1,7 +1,5 @@
 DECLARE a;
-DECLARE flag;
-flag = 1;
-{
-  a = 5+2;
-}
-PRINT flag ? 6*3 - a : 15;
+DECLARE b;
+a = 1;
+b = 2;
+PRINT a || 0/1;

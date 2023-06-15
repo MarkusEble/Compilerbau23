@@ -5,4 +5,3 @@ PRINT a && b;
 PRINT a || b;
 PRINT a || 0/1;
 PRINT b && 0/1;
-

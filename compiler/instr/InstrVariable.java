@@ -2,7 +2,6 @@ package compiler.instr;
 
 import compiler.ExecutionEnvIntf;
 import compiler.InstrIntf;
-import compiler.Symbol;
 
 import java.io.OutputStreamWriter;
 
@@ -19,7 +18,7 @@ public class InstrVariable extends InstrIntf {
     }
 
     public void trace(final OutputStreamWriter os) throws Exception {
-        os.write(String.format("VARIABLE %s\n", this.name));
+        os.write(String.format("%%%d = VARIABLE %s\n", m_id, this.name));
     }
 
 }

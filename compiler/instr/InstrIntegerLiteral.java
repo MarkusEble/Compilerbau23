@@ -12,6 +12,6 @@ public class InstrIntegerLiteral extends compiler.InstrIntf {
     }
 
     public void trace(OutputStreamWriter os) throws Exception {
-        os.write(String.format("INTEGER %s\n", m_value));
+        os.write(String.format("%%%d = INTEGER %s\n", m_id, m_value));
     }
 }

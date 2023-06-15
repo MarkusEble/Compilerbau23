@@ -38,7 +38,7 @@ public class ASTAndOrExprNode extends ASTExprNode {
 
     @Override 
     public InstrIntf codegen(CompileEnvIntf env){
-        Symbol result = env.createUniqueSymbol("result", 0);
+        Symbol result = env.createUniqueSymbol("result");
 
         InstrBlock init = env.createBlock("init");
         InstrBlock compare = env.createBlock("compare");
