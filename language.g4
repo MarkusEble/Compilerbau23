@@ -5,6 +5,14 @@ sumOp: PLUS|MINUS;
 mulDivExpr: NUMBER (mulDivOp NUMBER)*;
 mulDivOp: MUL|DIV;
 cmpExpr: questExpr ((LESS|GREATER|EQUAL) questExpr)*;
+
+ifStmt: IF LPAREN cmpExpr RPAREN blockStmt (elseStmt)?;
+elseStmt: ELSE (blockStmt | ifStmt);
+
+LPAREN: '(';
+RPAREN: ')';
+IF: 'if';
+ELSE: 'else';
 LESS: '<';
 GREATER: '>';
 EQUAL: '==';
