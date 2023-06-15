@@ -28,4 +28,8 @@ AND: '&&';
 OR: '||';
 
 SHIFTLEFT: '<<';
-SHIFTRRIGHT: '>>';
+SHIFTRIGHT: '>>';
+
+assignStmt: IDENTIFIER ASSIGN shiftExpr;
+IDENTIFIER: [A-Za-z][A-Za-z0-9]*;
+ASSIGN: '=';
