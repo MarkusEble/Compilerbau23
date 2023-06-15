@@ -37,4 +37,7 @@ SHIFTLEFT: '<<';
 SHIFTRRIGHT: '>>';
 WS: [ \t\r\n]+ -> skip;
 
+LPAREN: '(';
+RPAREN: ')';
 
+parantheseExpr: (LPAREN sumquestionMarkExpr RPAREN) | NUMBER;
