@@ -9,7 +9,10 @@ NUMBER: [0-9]+;
 PLUS: '+';
 MINUS: '-';
 
-
+bitAndOrExpr:plusMinExp operator plusMinExp;
+operator: BITAND | BITOR;
+BITAND: '&';
+BITOR:'|';
 
 andOrExpr: cmpExpr (andOrOp cmpExpr)*;
 andOrOp: AND|OR;
