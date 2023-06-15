@@ -1,4 +1,4 @@
-// Generated from language.g4 by ANTLR 4.7.2
+// Generated from .\language.g4 by ANTLR 4.7.2
 package antlrcompiler;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -27,4 +27,14 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSumOp(languageParser.SumOpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#cmpExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmpExpr(languageParser.CmpExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#cmpExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmpExpr(languageParser.CmpExprContext ctx);
 }

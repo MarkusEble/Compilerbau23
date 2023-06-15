@@ -1,4 +1,4 @@
-// Generated from language.g4 by ANTLR 4.7.2
+// Generated from .\language.g4 by ANTLR 4.7.2
 package antlrcompiler;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -17,25 +17,25 @@ public class languageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		NUMBER=1, PLUS=2, MINUS=3, WS=4;
+		LESS=1, GREATER=2, EQUAL=3, NUMBER=4, PLUS=5, MINUS=6, WS=7;
 	public static final int
-		RULE_sumExpr = 0, RULE_sumOp = 1;
+		RULE_sumExpr = 0, RULE_sumOp = 1, RULE_cmpExpr = 2;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"sumExpr", "sumOp"
+			"sumExpr", "sumOp", "cmpExpr"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'+'", "'-'"
+			null, "'<'", "'>'", "'=='", null, "'+'", "'-'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "NUMBER", "PLUS", "MINUS", "WS"
+			null, "LESS", "GREATER", "EQUAL", "NUMBER", "PLUS", "MINUS", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -126,21 +126,21 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(4);
+			setState(6);
 			match(NUMBER);
-			setState(10);
+			setState(12);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PLUS || _la==MINUS) {
 				{
 				{
-				setState(5);
+				setState(7);
 				sumOp();
-				setState(6);
+				setState(8);
 				match(NUMBER);
 				}
 				}
-				setState(12);
+				setState(14);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -186,7 +186,7 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(13);
+			setState(15);
 			_la = _input.LA(1);
 			if ( !(_la==PLUS || _la==MINUS) ) {
 			_errHandler.recoverInline(this);
@@ -209,12 +209,99 @@ public class languageParser extends Parser {
 		return _localctx;
 	}
 
+	public static class CmpExprContext extends ParserRuleContext {
+		public List<SumExprContext> sumExpr() {
+			return getRuleContexts(SumExprContext.class);
+		}
+		public SumExprContext sumExpr(int i) {
+			return getRuleContext(SumExprContext.class,i);
+		}
+		public List<TerminalNode> LESS() { return getTokens(languageParser.LESS); }
+		public TerminalNode LESS(int i) {
+			return getToken(languageParser.LESS, i);
+		}
+		public List<TerminalNode> GREATER() { return getTokens(languageParser.GREATER); }
+		public TerminalNode GREATER(int i) {
+			return getToken(languageParser.GREATER, i);
+		}
+		public List<TerminalNode> EQUAL() { return getTokens(languageParser.EQUAL); }
+		public TerminalNode EQUAL(int i) {
+			return getToken(languageParser.EQUAL, i);
+		}
+		public CmpExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_cmpExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterCmpExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitCmpExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitCmpExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final CmpExprContext cmpExpr() throws RecognitionException {
+		CmpExprContext _localctx = new CmpExprContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_cmpExpr);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(17);
+			sumExpr();
+			setState(22);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LESS) | (1L << GREATER) | (1L << EQUAL))) != 0)) {
+				{
+				{
+				setState(18);
+				_la = _input.LA(1);
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LESS) | (1L << GREATER) | (1L << EQUAL))) != 0)) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(19);
+				sumExpr();
+				}
+				}
+				setState(24);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6\22\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\2\7\2\13\n\2\f\2\16\2\16\13\2\3\3\3\3\3\3\2\2\4\2\4"+
-		"\2\3\3\2\4\5\2\20\2\6\3\2\2\2\4\17\3\2\2\2\6\f\7\3\2\2\7\b\5\4\3\2\b\t"+
-		"\7\3\2\2\t\13\3\2\2\2\n\7\3\2\2\2\13\16\3\2\2\2\f\n\3\2\2\2\f\r\3\2\2"+
-		"\2\r\3\3\2\2\2\16\f\3\2\2\2\17\20\t\2\2\2\20\5\3\2\2\2\3\f";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\t\34\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\3\2\3\2\3\2\3\2\7\2\r\n\2\f\2\16\2\20\13\2\3\3\3\3\3\4\3"+
+		"\4\3\4\7\4\27\n\4\f\4\16\4\32\13\4\3\4\2\2\5\2\4\6\2\4\3\2\7\b\3\2\3\5"+
+		"\2\32\2\b\3\2\2\2\4\21\3\2\2\2\6\23\3\2\2\2\b\16\7\6\2\2\t\n\5\4\3\2\n"+
+		"\13\7\6\2\2\13\r\3\2\2\2\f\t\3\2\2\2\r\20\3\2\2\2\16\f\3\2\2\2\16\17\3"+
+		"\2\2\2\17\3\3\2\2\2\20\16\3\2\2\2\21\22\t\2\2\2\22\5\3\2\2\2\23\30\5\2"+
+		"\2\2\24\25\t\3\2\2\25\27\5\2\2\2\26\24\3\2\2\2\27\32\3\2\2\2\30\26\3\2"+
+		"\2\2\30\31\3\2\2\2\31\7\3\2\2\2\32\30\3\2\2\2\4\16\30";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

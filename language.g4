@@ -1,6 +1,10 @@
 grammar language;
 sumExpr: NUMBER (sumOp NUMBER)*;
 sumOp: PLUS|MINUS;
+cmpExpr: sumExpr ((LESS|GREATER|EQUAL) sumExpr)*;
+LESS: '<';
+GREATER: '>';
+EQUAL: '==';
 NUMBER: [0-9]+;
 PLUS: '+';
 MINUS: '-';

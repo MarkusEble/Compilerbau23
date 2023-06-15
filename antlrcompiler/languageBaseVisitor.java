@@ -1,4 +1,4 @@
-// Generated from language.g4 by ANTLR 4.7.2
+// Generated from .\language.g4 by ANTLR 4.7.2
 package antlrcompiler;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -25,4 +25,11 @@ public class languageBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitSumOp(languageParser.SumOpContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCmpExpr(languageParser.CmpExprContext ctx) { return visitChildren(ctx); }
 }

@@ -1,4 +1,4 @@
-// Generated from language.g4 by ANTLR 4.7.2
+// Generated from .\language.g4 by ANTLR 4.7.2
 package antlrcompiler;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -35,6 +35,18 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSumOp(languageParser.SumOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCmpExpr(languageParser.CmpExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmpExpr(languageParser.CmpExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,4 +1,4 @@
-// Generated from language.g4 by ANTLR 4.7.2
+// Generated from .\language.g4 by ANTLR 4.7.2
 package antlrcompiler;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -22,4 +22,10 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSumOp(languageParser.SumOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#cmpExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCmpExpr(languageParser.CmpExprContext ctx);
 }
