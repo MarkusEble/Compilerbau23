@@ -23,4 +23,8 @@ OR: '||';
 shiftExpr: sumExpr (shiftOp sumExpr)*;
 shiftOp: SHIFTLEFT | SHIFTRIGHT;
 SHIFTLEFT: '<<';
-SHIFTRRIGHT: '>>';
+SHIFTRIGHT: '>>';
+
+assignStmt: IDENTIFIER ASSIGN shiftExpr;
+IDENTIFIER: [A-Za-z][A-Za-z0-9]*;
+ASSIGN: '=';
