@@ -40,7 +40,7 @@ public class CompileEnv implements CompileEnvIntf {
 
     @Override
     public Symbol createUniqueSymbol(String prefix, int number) {
-        return new Symbol("$" + prefix + uniqueSymbolCounter++, number);
+        return m_symbolTable.createSymbol("$" + prefix + "_" + uniqueSymbolCounter++);
     }
 
     public void pushLoopStack(InstrBlock instrBlock){

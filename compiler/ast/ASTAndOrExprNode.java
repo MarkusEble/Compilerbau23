@@ -47,8 +47,10 @@ public class ASTAndOrExprNode extends ASTExprNode {
         env.addInstr(new InstrJump(init));
         env.setCurrentBlock(init);
 
-        InstrIntf lhsVal = new InstrIntegerLiteral(lhs.codegen(env).getValue());
+        InstrIntf lhsVal = lhs.codegen(env);
         env.addInstr(lhsVal);
+
+        env.addInstr(new InstrAssignStmt(result, lhsVal));
 
         if(token.m_type == Token.Type.AND){
             InstrIntf condition = new InstrJumpCond(lhsVal, compare, exit);
@@ -69,7 +71,7 @@ public class ASTAndOrExprNode extends ASTExprNode {
 
         //exit
         env.setCurrentBlock(exit);
-        return new InstrIntegerLiteral(result.m_number);
-    }
 
+        return new ASTVariableExprNode(result).codegen(env);
+    }
 }
