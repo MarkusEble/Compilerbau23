@@ -136,18 +136,6 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSumOp(languageParser.SumOpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSumOp(languageParser.SumOpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMulDivExpr(languageParser.MulDivExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -155,18 +143,6 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMulDivExpr(languageParser.MulDivExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMulDivOp(languageParser.MulDivOpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMulDivOp(languageParser.MulDivOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

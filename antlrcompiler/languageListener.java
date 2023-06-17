@@ -108,16 +108,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitSumExpr(languageParser.SumExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#sumOp}.
-	 * @param ctx the parse tree
-	 */
-	void enterSumOp(languageParser.SumOpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#sumOp}.
-	 * @param ctx the parse tree
-	 */
-	void exitSumOp(languageParser.SumOpContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link languageParser#mulDivExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -127,16 +117,6 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMulDivExpr(languageParser.MulDivExprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#mulDivOp}.
-	 * @param ctx the parse tree
-	 */
-	void enterMulDivOp(languageParser.MulDivOpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#mulDivOp}.
-	 * @param ctx the parse tree
-	 */
-	void exitMulDivOp(languageParser.MulDivOpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code numberOnly}
 	 * labeled alternative in {@link languageParser#parantheseExpr}.

@@ -8,12 +8,12 @@ shiftExpr: bitAndOrExpr (shiftOp bitAndOrExpr)*;
 shiftOp: SHIFTLEFT | SHIFTRIGHT;
 bitAndOrExpr: sumExpr (bitOp sumExpr)*;
 bitOp: BITAND | BITOR;
-sumExpr: mulDivExpr (sumOp mulDivExpr)*;
-sumOp: PLUS|MINUS;
-mulDivExpr: parantheseExpr (mulDivOp parantheseExpr)*;
-mulDivOp: MUL|DIV;
+sumExpr: mulDivExpr (SUMOP mulDivExpr)*;
+mulDivExpr: parantheseExpr (MULOP parantheseExpr)*;
 parantheseExpr:  NUMBER #numberOnly | LPAREN sumExpr RPAREN #withParanthese;
 
+SUMOP: PLUS|MINUS;
+MULOP: MUL|DIV;
 LESS: '<';
 GREATER: '>';
 EQUAL: '==';

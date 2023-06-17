@@ -71,23 +71,11 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSumExpr(languageParser.SumExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#sumOp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSumOp(languageParser.SumOpContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link languageParser#mulDivExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDivExpr(languageParser.MulDivExprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#mulDivOp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMulDivOp(languageParser.MulDivOpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code numberOnly}
 	 * labeled alternative in {@link languageParser#parantheseExpr}.
