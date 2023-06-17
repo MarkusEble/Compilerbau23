@@ -1,17 +1,18 @@
 grammar language;
-sumExpr: NUMBER (sumOp NUMBER)*;
-sumOp: PLUS|MINUS;
-questionMarkExpr: andOrExpr QUESTIONMARK andOrExpr DOUBLECOLON andOrExpr;
-
-mulDivExpr: NUMBER (mulDivOp NUMBER)*;
-mulDivOp: MUL|DIV;
-cmpExpr: questExpr ((LESS|GREATER|EQUAL) questExpr)*;
+questionMarkExpr: (andOrExpr QUESTIONMARK andOrExpr DOUBLECOLON andOrExpr) | andOrExpr;
 andOrExpr: cmpExpr (andOrOp cmpExpr)*;
 andOrOp: AND|OR;
-shiftExpr: sumExpr (shiftOp sumExpr)*;
+cmpExpr: shiftExpr ( cmpOp shiftExpr)*;
+cmpOp: (LESS|GREATER|EQUAL);
+shiftExpr: bitAndOrExpr (shiftOp bitAndOrExpr)*;
 shiftOp: SHIFTLEFT | SHIFTRIGHT;
-bitAndOrExpr:plusMinExp operator plusMinExp;
-operator: BITAND | BITOR;
+bitAndOrExpr: sumExpr (bitOp sumExpr)*;
+bitOp: BITAND | BITOR;
+sumExpr: mulDivExpr (sumOp mulDivExpr)*;
+sumOp: PLUS|MINUS;
+mulDivExpr: parantheseExpr (mulDivOp parantheseExpr)*;
+mulDivOp: MUL|DIV;
+parantheseExpr:  NUMBER #numberOnly | LPAREN sumExpr RPAREN #withParanthese;
 
 LESS: '<';
 GREATER: '>';
@@ -34,10 +35,9 @@ AND: '&&';
 OR: '||';
 
 SHIFTLEFT: '<<';
-SHIFTRRIGHT: '>>';
+SHIFTRIGHT: '>>';
 WS: [ \t\r\n]+ -> skip;
 
 LPAREN: '(';
 RPAREN: ')';
 
-parantheseExpr: (LPAREN sumquestionMarkExpr RPAREN) | NUMBER;

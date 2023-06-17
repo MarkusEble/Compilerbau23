@@ -1,3 +1,5 @@
+import java.io.OutputStreamWriter;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -15,7 +17,13 @@ public class languageMain {
 		parser.setBuildParseTree(true);
 		// build parse tree
 		ParseTree tree = parser.sumExpr();
-		// output parse tree
-		System.out.println(tree.toStringTree(parser));
+
+        OutputStreamWriter outStream = new OutputStreamWriter(System.out, "UTF-8");
+        outStream.write("\nAST: \n");
+        ParseTreeVisitor<compiler.ast.ASTNode> treeVisitor = new MyLanguageVisitor();
+        compiler.ast.ASTExprNode rootNode = (compiler.ast.ASTExprNode)treeVisitor.visit(tree);
+        rootNode.print(outStream, new String());
+        outStream.flush();
+        System.out.println(rootNode.eval());
     }
 }
